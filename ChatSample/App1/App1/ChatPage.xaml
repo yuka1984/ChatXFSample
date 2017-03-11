@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1"
+             local:AppearingAttachProperty.DisAppearingCommand="{Binding ExitCommand}"
+             x:Class="App1.ChatPage">
+    <RelativeLayout>
+        <Label Text="{Binding Title.Value}" HorizontalTextAlignment="Center"
+               RelativeLayout.YConstraint="{ConstraintExpression
+                                              Type=RelativeToParent,
+                                              Property=Y}"
+               RelativeLayout.WidthConstraint="{ConstraintExpression
+                                          Type=RelativeToParent,
+                                          Property=Width, Factor=1}"
+               />
+        <ListView ItemsSource="{Binding Messages}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression
+                                          Type=RelativeToParent,
+                                          Property=Width, Factor=1}"
+                  RelativeLayout.YConstraint="{ConstraintExpression
+                                              Type=RelativeToParent,
+                                              Property=Y, Constant=50}"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding UserName}" Detail="{Binding Message}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Editor Text="{Binding Message.Value}" 
+                RelativeLayout.WidthConstraint="{ConstraintExpression
+                                          Type=RelativeToParent,
+                                          Property=Width, Factor=0.8}"
+                RelativeLayout.XConstraint="{ConstraintExpression
+                                      Type=RelativeToParent,
+                                      Property=X}"
+                RelativeLayout.YConstraint="{ConstraintExpression
+                                              Type=RelativeToParent,
+                                              Property=Height, Constant=-50}" />
+        <Button Text="送信" Command="{Binding SendCommand}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression
+                                          Type=RelativeToParent,
+                                          Property=Width, Factor=0.2}"
+                RelativeLayout.XConstraint="{ConstraintExpression
+                                      Type=RelativeToParent,
+                                      Property=Width, Factor=0.8}"
+                RelativeLayout.YConstraint="{ConstraintExpression
+                                              Type=RelativeToParent,
+                                              Property=Height, Constant=-50}"
+                />
+    </RelativeLayout>
+</ContentPage>
